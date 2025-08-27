@@ -7,6 +7,21 @@ If you want to learn more about Quarkus, please visit its website: <https://quar
 ## API List
 http://localhost:8080/q/dev-ui/endpoints
 
+## Create Table todos
+```
+CREATE TABLE IF NOT EXISTS todos (
+    id           BIGSERIAL PRIMARY KEY,
+    description  TEXT NOT NULL,
+
+    created_by   VARCHAR(100),
+    updated_by   VARCHAR(100),
+    created_at   TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+    updated_at   TIMESTAMPTZ,
+    deleted_at   TIMESTAMPTZ
+);
+
+CREATE INDEX IF NOT EXISTS idx_todos_not_deleted ON todos (deleted_at);
+```
 ## Setup application-dev.properties
 This file is not pushed, but must be created with own settings
 ```
