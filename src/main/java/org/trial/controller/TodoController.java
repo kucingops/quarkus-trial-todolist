@@ -27,9 +27,9 @@ public class TodoController {
 
     // 2) delete -> soft delete
     @DELETE
-    @Path("/{id}")
+    @Path("/{id}/{actor}")
     public Response delete(@PathParam("id") Long id,
-                           @HeaderParam("X-Actor") String actor) {
+                           @PathParam("actor") String actor) {
         service.softDelete(id, actor);
         return Response.noContent().build();
     }
